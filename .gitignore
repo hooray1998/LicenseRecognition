@@ -11,3 +11,13 @@ iTT_HWin.pro.user.c0582e3
 other/
 release/
 cpn.ico
+bad.list
+darknet_no_gpu.exe
+data/
+ittdata/
+opencv_ffmpeg340_64.dll
+opencv_world340.dll
+prediction_result.txt
+pthreadGC2.dll
+pthreadVC2.dll
+t/ 

@@ -41,12 +41,14 @@ public:
         font.setItalic(false);
         font.setWeight(50);
         Widget->setFont(font);
+        Widget->setAcceptDrops(true);
         pictureLabel = new myLabel(Widget);
         pictureLabel->setObjectName(QStringLiteral("pictureLabel"));
         pictureLabel->setGeometry(QRect(440, 360, 256, 291));
         pictureLabel->setMinimumSize(QSize(0, 0));
         pictureLabel->setMaximumSize(QSize(16777215, 16777215));
         pictureLabel->setCursor(QCursor(Qt::CrossCursor));
+        pictureLabel->setAcceptDrops(true);
         uploadPushButton = new QPushButton(Widget);
         uploadPushButton->setObjectName(QStringLiteral("uploadPushButton"));
         uploadPushButton->setGeometry(QRect(20, 10, 117, 36));

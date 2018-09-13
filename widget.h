@@ -2,6 +2,8 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include"workthread.h"
+
 #include <QSplitter>
 #include <QFileSystemModel>
 #include <QListView>
@@ -37,18 +39,27 @@ public:
 
 protected:
     void contextMenuEvent();
-
     void resizeEvent(QResizeEvent *event);
-public slots:
-    void readCurPicture(QModelIndex index);
+
+signals:
+    void IniCmdThread_sign();
+    void read_sign();
+    void write_sign(QString);
+    void stopread_sign();
+    void sendcomd_sign(QString);
+
 private slots:
+    void getdata_slot(QString);
+    void stopRead();
+
+    void readCurPicture(QModelIndex index);
     void on_uploadPushButton_clicked();
+    void on_restartPushButton_clicked();
 
 private:
     Ui::Widget *ui;
-    QWidget *secwidget;
-    QHBoxLayout*seclay;
-    QLabel*seclabel;
+    QProcess* myChildProcess;
+    QThread m_thread;
 
     QSplitter *splitter;
     QFileSystemModel *model;

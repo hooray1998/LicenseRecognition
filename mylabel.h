@@ -28,6 +28,7 @@ class myLabel : public QLabel
 public:
     explicit myLabel(QWidget*parent = 0);
 
+    void setNewLayout();
     void setMainPicture(QPixmap p);
     void setCharsArray(SplitChar *p, int charsnum);
 
@@ -37,8 +38,21 @@ private:
     QPixmap *mainPicture;
     SplitChar spchars[10];
     int charsNumber;
-
+    QRect captureLicense[10];
+    QPixmap capturePixmap[10];
     QRect mark[10];
+    int wid,
+        hei,
+        sidewidth,
+        blackwidth,
+        topheight,
+        lwidth,
+        lheight,
+        mainwidth,
+        mainheight,
+        mainx,
+        mainy;
+
 public slots:
     void paintEvent(QPaintEvent *);
 };
