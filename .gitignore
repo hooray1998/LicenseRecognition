@@ -1,0 +1,13 @@
+.qmake.stash
+IRRepr/
+Makefile
+Makefile.Debug
+Makefile.Release
+debug/
+iTT_HWin.pro.user.3005743
+iTT_HWin.pro.user.59e1fe2
+iTT_HWin.pro.user.5fdb274
+iTT_HWin.pro.user.c0582e3
+other/
+release/
+cpn.ico
