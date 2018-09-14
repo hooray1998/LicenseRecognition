@@ -1,6 +1,8 @@
 #ifndef MYLABEL_H
 #define MYLABEL_H
 
+#define MAX_CHAR_NUM 10
+
 #include <QLabel>
 #include <QPainter>
 #include <QPoint>
@@ -13,7 +15,8 @@
 
 class SplitChar{
 public:
-    int classnum;
+    QString classnum;
+    int rightRate;
     int leftx;
     int topy;
     int width;
@@ -36,11 +39,12 @@ private:
     QPainter painter;
 
     QPixmap *mainPicture;
-    SplitChar spchars[10];
+    SplitChar spchars[MAX_CHAR_NUM];
+    QRect charsRects[MAX_CHAR_NUM];
     int charsNumber;
-    QRect captureLicense[10];
-    QPixmap capturePixmap[10];
-    QRect mark[10];
+    QRect captureLicense[MAX_CHAR_NUM];
+    QPixmap capturePixmap[MAX_CHAR_NUM];
+    QRect mark[MAX_CHAR_NUM];
     int wid,
         hei,
         sidewidth,
@@ -52,6 +56,8 @@ private:
         mainheight,
         mainx,
         mainy;
+
+    QPixmap labelPicture;//label快照
 
 public slots:
     void paintEvent(QPaintEvent *);

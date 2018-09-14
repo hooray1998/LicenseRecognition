@@ -67,12 +67,11 @@ void Widget::initStyle()
 void Widget::readCurPicture(QModelIndex index)
 {
     QString filepath = model->filePath(index);
-    if(filepath.contains(".jpg")||filepath.contains(".png"))
+    if(filepath.contains(".jpg")||filepath.contains(".png")||filepath.contains(".bmp"))
     {
         ui->pictureLabel->setMainPicture(QPixmap(filepath));
         QString str_comd = filepath + '\r' + '\n';
         emit sendcomd_sign(str_comd);
-        qDebug()<<"dafsd"<<endl;
     }
 
 
@@ -97,6 +96,8 @@ void Widget::resizeEvent(QResizeEvent *event)
 
     ui->pictureLabel->setNewLayout();
     ui->pictureLabel->update();
+
+    //字体随之变化
 }
 void Widget::on_uploadPushButton_clicked()
 {
@@ -131,16 +132,24 @@ void Widget::getdata_slot(QString info)
             if(!ok) qDebug("no open ");
 
             QTextStream in(file);
+            SplitChar tempArrays[MAX_CHAR_NUM];
+            int num=0;
             while(!in.atEnd())
             {
                 //QDBG<<in.readLine();
-                ui->resultTextEdit->append(in.readLine());
+                in>>tempArrays[num].classnum>>tempArrays[num].rightRate>>tempArrays[num].leftx>>tempArrays[num].topy>>tempArrays[num].width>>tempArrays[num].height;
+                num++;
 
             }
+            num--;///
+
+            ui->resultTextEdit->append(QString("charsNum is %1").arg(num));
 
             file->close();
             delete file;
             file = NULL;
+
+            ui->pictureLabel->setCharsArray(tempArrays,num);
 
             //QDBG << info;
             ui->resultTextEdit->append(info);
