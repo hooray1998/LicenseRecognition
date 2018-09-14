@@ -20,6 +20,11 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
+//drag
+#include<QDragEnterEvent>
+#include<QMimeData>
+#include<QDropEvent>
+#include<QUrl>
 
 namespace Ui {
 class Widget;
@@ -40,6 +45,8 @@ public:
 protected:
     void contextMenuEvent();
     void resizeEvent(QResizeEvent *event);
+    void dragEnterEvent(QDragEnterEvent*event);//拖动进入事件
+    void dropEvent(QDropEvent*event);
 
 signals:
     void IniCmdThread_sign();

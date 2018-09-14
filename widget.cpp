@@ -176,3 +176,27 @@ void Widget::on_restartPushButton_clicked()
     emit IniCmdThread_sign();
     emit read_sign();
 }
+
+
+
+
+
+void Widget::dragEnterEvent(QDragEnterEvent*event){
+//如果类型是jpg或者png才能接受拖动。
+//这里的compare字符串比较函数，相等的时候返回0，所以要取反
+   if(!event->mimeData()->urls()[0].fileName().right(3).compare("jpg")
+           ||!event->mimeData()->urls()[0].fileName().right(3).compare("png")
+           ||!event->mimeData()->urls()[0].fileName().right(3).compare("bmp"))
+       event->acceptProposedAction();
+    else
+       event->ignore();//否则不接受鼠标事件
+}
+//放下事件
+void Widget::dropEvent(QDropEvent*event){
+    const QMimeData*qm=event->mimeData();//获取MIMEData
+    QString filepath = qm->urls()[0].toLocalFile();//.toLocalFile()是获取拖动文件的本地路径。
+
+    ui->pictureLabel->setMainPicture(QPixmap(filepath));
+    QString str_comd = filepath + '\r' + '\n';
+    emit sendcomd_sign(str_comd);
+}
