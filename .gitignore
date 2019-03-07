@@ -21,3 +21,6 @@ prediction_result.txt
 pthreadGC2.dll
 pthreadVC2.dll
 t/ 
+showDarknet.pro.user
+showDarknet.user
+testImg/

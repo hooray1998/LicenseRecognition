@@ -56,13 +56,12 @@ void myLabel::paintEvent(QPaintEvent *)
             for(int i=0;i<charsNumber;i++)
             {
                 captureLicense[i].setRect(charsRects[i].x(),charsRects[i].y(),charsRects[i].width(),charsRects[i].height());
-                qDebug()<<captureLicense[i];
                 capturePixmap[i] =labelPicture.copy(captureLicense[i]);
             }
             for(int i=0;i<charsNumber;i++)
             {
                 painter.drawPixmap(mark[i],capturePixmap[i].scaled(mark[i].size()));
-                painter.drawText(mark[i].x(),mark[i].y()+mark[i].height(),mark[i].width(),mark[i].height(), 0, spchars[i].classnum+QString("\n%1%").arg(spchars[i].rightRate));
+                painter.drawText(mark[i].x(),mark[i].y()+mark[i].height(),mark[i].width(),mark[i].height(), 0, " "+spchars[i].classnum+QString("\n%1%").arg(spchars[i].rightRate));
             }
 
         }
@@ -74,7 +73,6 @@ void myLabel::paintEvent(QPaintEvent *)
 void myLabel::setMainPicture(QPixmap p)
 {
     mainPicture = new QPixmap(p);
-    qDebug()<<mainPicture->width()<<"width";
     charsNumber = 0;
     setNewLayout();
     update();
@@ -94,7 +92,6 @@ void myLabel::setCharsArray(SplitChar *p, int charsnum)
         int realy = mainy + 1.0*mainheight*p[i].topy/(1.0*phei);
         int realwidth = 1.0*mainwidth*p[i].width/(1.0*pwid);
         int realheight = 1.0*mainheight*p[i].height/(1.0*phei);
-        qDebug()<<realx<<realy<<realwidth<<realheight<<"%%%"<<1.0*mainwidth*p[i].width/(1.0*pwid)<<"mainwidth"<<mainwidth;
 
         charsRects[i].setRect(realx, realy, realwidth, realheight);
 
@@ -113,4 +110,20 @@ void SplitChar::init(SplitChar &temp)
     topy = temp.topy;
     width = temp.width;
     height = temp.height;
+}
+
+bool SplitChar::equal(SplitChar &another)
+{
+    int center1_x = leftx+width/3;
+    int center2_x = leftx+width*2/3;
+    int center_y  = topy + height/2;
+
+    if(center1_x>another.leftx&&center1_x<(another.leftx+another.width)&&center_y>another.topy&&center_y<(another.topy+another.height))
+    {
+        if(center2_x>another.leftx&&center2_x<(another.leftx+another.width)&&center_y>another.topy&&center_y<(another.topy+another.height))
+            return true;
+        else
+            return false;
+    }
+    return false;
 }

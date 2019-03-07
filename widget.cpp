@@ -7,6 +7,7 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowState(Qt::WindowMaximized);
+    ui->restartPushButton->setShortcut(tr("space"));
 
     splitter = new QSplitter(this);
     model = new QFileSystemModel;
@@ -14,7 +15,7 @@ Widget::Widget(QWidget *parent) :
     list->setModel(model);
     splitter->show();
 
-    QString folder2 = "E:/QtCoding/workThread/t";
+    QString folder2 = "E:/QtCoding/showDarknet/testImg";
         model->setRootPath(folder2);
         list->setRootIndex(model->index(folder2));
     initStyle();

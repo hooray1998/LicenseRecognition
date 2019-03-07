@@ -23,6 +23,7 @@ public:
     int height;
 
     void init(SplitChar &temp);
+    bool equal(SplitChar &another);
 };
 
 class myLabel : public QLabel
